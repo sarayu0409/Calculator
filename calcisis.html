@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculator with C Button Span</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #f0f0f0;
+      font-family: Arial, sans-serif;
+    }
+    .calculator {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      width: 280px;
+    }
+    #display {
+      width: 100%;
+      height: 60px;
+      margin-bottom: 15px;
+      text-align: right;
+      font-size: 1.8em;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background: #f9f9f9;
+      box-sizing: border-box;
+    }
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 10px;
+    }
+    .buttons button {
+      height: 60px;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 5px;
+      background: #e0e0e0;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .buttons button:hover {
+      background: #d5d5d5;
+    }
+    .buttons .equal {
+      grid-column: span 2;
+      background: #4caf50;
+      color: white;
+    }
+    .buttons .equal:hover {
+      background: #45a049;
+    }
+    .buttons .clear {
+      grid-column: span 2;
+      background: #f44336;
+      color: white;
+    }
+    .buttons .clear:hover {
+      background: #d32f2f;
+    }
+    .buttons .delete {
+      background: #ff9800;
+      color: white;
+    }
+    .buttons .delete:hover {
+      background: #e68900;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <input type="text" id="display" readonly />
+    <div class="buttons">
+      <button onclick="clearDisplay()" class="clear">C</button>
+      <button onclick="deleteLast()" class="delete">DEL</button>
+      <button onclick="appendValue('/')">/</button>
+      <button onclick="appendValue('*')">*</button>
+
+      <button onclick="appendValue('7')">7</button>
+      <button onclick="appendValue('8')">8</button>
+      <button onclick="appendValue('9')">9</button>
+      <button onclick="appendValue('-')">-</button>
+
+      <button onclick="appendValue('4')">4</button>
+      <button onclick="appendValue('5')">5</button>
+      <button onclick="appendValue('6')">6</button>
+      <button onclick="appendValue('+')">+</button>
+
+      <button onclick="appendValue('1')">1</button>
+      <button onclick="appendValue('2')">2</button>
+      <button onclick="appendValue('3')">3</button>
+      <button onclick="calculate()" class="equal">=</button>
+
+      <button onclick="appendValue('0')">0</button>
+      <button onclick="appendValue('.')">.</button>
+    </div>
+  </div>
+
+  <script>
+    const display = document.getElementById("display");
+
+    function appendValue(value) {
+      display.value += value;
+    }
+
+    function clearDisplay() {
+      display.value = "";
+    }
+
+    function deleteLast() {
+      display.value = display.value.slice(0, -1);
+    }
+
+    function calculate() {
+      try {
+        display.value = eval(display.value);
+      } catch (e) {
+        display.value = "Error";
+      }
+    }
+  </script>
+</body>
+</html>
